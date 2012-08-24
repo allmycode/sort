@@ -13,11 +13,22 @@ void init() {
   srand(time(NULL));
 }
 
+void sort(int a[], int size);
+
+bool checkSort(int a[], int size);
+
 int main(int argc, char* argv[]) {
   init();
 
   int* data = makeTestArray();
   printArray("unsorted", data, SIZE);
+  sort(data, SIZE);
+  printArray("sorted", data, SIZE);
+  if (checkSort(data, SIZE))
+    std::cout << "OK" << std::endl;
+  else
+    std::cout << "Fail" << std::endl;
+
   delete[] data;
   return 0;
 }
@@ -43,4 +54,27 @@ void printArray(const char* name, int a[], int size) {
     std::cout << "," << a[i];
 
   std::cout << std::endl;
+}
+
+void bubbleSort(int a[], int size) {
+  for (int i = size; i > 0; i--) 
+    for (int j = 0; j < i-1; j++)
+      if (a[j] > a[j+1]) {
+        int t = a[j];
+        a[j] = a[j+1];
+        a[j+1]=t;
+      }
 }  
+
+void sort(int a[], int size) {
+  bubbleSort(a, size);
+}
+
+
+bool checkSort(int a[], int size) {
+  for (int i = 0; i < size-1; i++) {
+    if (a[i] > a[i+1])
+      return false;
+  }
+  return true;
+}
