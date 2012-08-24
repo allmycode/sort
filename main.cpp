@@ -1,18 +1,18 @@
 #include <iostream>
 
-const int size = 10;
+const int SIZE = 10;
 
-int* createData();
+int* makeTestArray();
 
 int main(int argc, char* argv[]) {
-  int* data = createData();
-  for (int i = 0; i < size; i++)
+  int* data = makeTestArray();
+  for (int i = 0; i < SIZE; i++)
     std::cout << data[i] << ",";
   return 0;
 }
 
 
-int* createData() {
-  int* data = new int[size];
+int* makeTestArray() {
+  int* data = new int[SIZE];
   return data;
 }
