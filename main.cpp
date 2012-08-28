@@ -60,8 +60,8 @@ void printArray(const char* name, int a[], int size) {
 }
 
 void sort(int a[], int size) {
-  bubblesort(a, size);
-  //mergesort(a, size);
+  //bubblesort(a, size);
+  mergesort(a, size);
 }
 
 bool checkSort(int a[], int size) {
