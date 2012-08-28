@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "mergesort.h"
+#include "mergesort.hpp"
 
 const int SIZE = 10;
 
