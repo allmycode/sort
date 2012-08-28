@@ -9,18 +9,18 @@ void mergesort(int a[], int l, int h) {
     int* b = new int[size+1];
     int i = l;
     int j = m+1;
-    int bi = 0;
+    int c = 0;
     while (i <= m && j <= h) {
       if (a[i] <= a[j])
-        b[bi++] = a[i++];
+        b[c++] = a[i++];
       else
-        b[bi++] = a[j++];
+        b[c++] = a[j++];
     }
     while(i <= m)
-      b[bi++] = a[i++];
+      b[c++] = a[i++];
 
     while(j <= h)
-      b[bi++] = a[j++];
+      b[c++] = a[j++];
 
     for (int k = 0; k < size; k++) {
       a[l+k] = b[k];
