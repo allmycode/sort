@@ -9,20 +9,20 @@ void mergesort(int a[], int l, int h) {
     int* b = new int[size+1];
     int i = l;
     int j = m+1;
-    int bi = 0;
-    while (i <= m && j <= h) {
+    int k = 0;
+    while (i <= m && j <= h)
       if (a[i] <= a[j])
-        b[bi++] = a[i++];
+        b[k++] = a[i++];
       else
-        b[bi++] = a[j++];
-    }
+        b[k++] = a[j++];
+
     while(i <= m)
-      b[bi++] = a[i++];
+      b[k++] = a[i++];
 
     while(j <= h)
-      b[bi++] = a[j++];
+      b[k++] = a[j++];
 
-    for (int k = 0; k < size; k++) {
+    for (k = 0; k < size; k++) {
       a[l+k] = b[k];
     }
     delete[] b;
