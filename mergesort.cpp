@@ -3,7 +3,7 @@
 void mergesort(int a[], int l, int h) {
   if (h > l) {
     int size = h - l + 1;
-    int m = (l + h) / 2;
+    int m = l + (h - l) / 2;
     mergesort(a, l, m);
     mergesort(a, m+1, h);
     int* b = new int[size+1];
