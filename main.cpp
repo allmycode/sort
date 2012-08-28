@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "mergesort.h"
+
 const int SIZE = 10;
 
 int* makeTestArray();
@@ -67,9 +69,9 @@ void bubbleSort(int a[], int size) {
 }  
 
 void sort(int a[], int size) {
-  bubbleSort(a, size);
+  //bubbleSort(a, size);
+  mergesort(a, size);
 }
-
 
 bool checkSort(int a[], int size) {
   for (int i = 0; i < size-1; i++) {
