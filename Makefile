@@ -1,8 +1,6 @@
-main:		main.cpp
-		g++ -o main main.cpp
+main:	main.cpp
+	g++ -o main main.cpp
 
-test-gen:	test-generator.cpp
-		g++ -o test-generator test-generator.cpp
+test:	test-executor.cpp
+	g++ -o test test-executor.cpp
 
-test-exec:	test-executor.cpp
-		g++ -o test test-executor.cpp
