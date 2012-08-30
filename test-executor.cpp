@@ -3,68 +3,65 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <cmath>
+
 #include "util.hpp"
-//#include "mergesort.hpp"
 #include "mergesort.hpp"
-#include "sys/time.h"
+#include "../libcpp/measurer.h"
 
-typedef unsigned long long timestamp_t;
+const int TRIES = 1;
+const int MIN_POWER = 5;
+const int MAX_POWER = 7;
+int* dt[MAX_POWER - MIN_POWER + 1][TRIES];
 
-static timestamp_t get_timestamp ()
-{
-  struct timeval now;
-  gettimeofday (&now, NULL);
-  return  now.tv_usec + (timestamp_t)now.tv_sec * 1000000;
+void prepareTestData() {
+  srand(42);
+  int size = pow(10, MIN_POWER);
+  for (int i = MIN_POWER; i <= MAX_POWER; i++) {
+    for (int j = 0; j < TRIES; j++) {
+      int*a = dt[i][j] = new int[size];
+      for (int k = 0; k < size; k++)
+        a[k] = rand() % 100;
+    }
+    size *= 10;
+  }
 }
 
-int main(int argc, const char* argv[]) {
+void doTests() {
   srand(42);
-
-  const int files = 7;
-  const int power = 6;
-  int* dt[power][files];
-  int pow = 10;
-  // read all data
-  for (int i = 0; i < power; i++) {
-    for (int j = 0; j < files; j++) {
-      std::stringstream fnames;
-      fnames << "tstdata" << j << "." << i + 1 << ".tst";
-      std::string fname = fnames.str();
-      std::ifstream f(fname.c_str(), std::ios::binary);
-      dt[i][j] = new int[pow];
-      for (int k = 0; k < pow && !f.eof(); k++) {
-        int data = 0;
-        f.read((char *)&data, sizeof(int));
-        dt[i][j][k] = data;
-      }
-    }
-    pow *= 10;
-  }
-
-  pow = 10;
+  int size = pow(10, MIN_POWER);
   std::cout << "Start tests ..." << std::endl;
   // do tests
-  for (int i = 0; i < power; i++) {
-    for (int j = 0; j < files; j++) {
-      timestamp_t t0 = get_timestamp();
-      mergesort(dt[i][j], pow);
-      timestamp_t t1 = get_timestamp();
+  for (int i = MIN_POWER; i <= MAX_POWER; i++) {
+    for (int j = 0; j < TRIES; j++) {
+      measurer m;
+      mergesort(dt[i][j], size);
 
-      double secs = (t1 - t0) / 1000000.0L; 
-      std::cout << "Test " << j << " on " << i << " took " << std::setprecision(4) << secs << " seconds" << std::endl;
+      std::cout << "Test " << j << " on " << size << " took " << std::setprecision(4) << 
+        m.seconds() << " seconds" << std::endl;
 
     }
-    pow *= 10;
+    size *= 10;
   }
+
   std::cout << "Finished tests ..." << std::endl;
+}
 
-
-  // clean up
-  for (int i = 0; i < power; i++) {
-    for (int j = 0; j < files; j++) {
+void cleanUp() {
+  for (int i = MIN_POWER; i <= MAX_POWER; i++) {
+    for (int j = 0; j < TRIES; j++) {
       delete[] dt[i][j];
     }
   }
+}
+
+int main(int argc, const char* argv[]) {
+
+  prepareTestData();
+
+  doTests();
   
+  cleanUp();
+
   return 0;
 }
