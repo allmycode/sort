@@ -1,5 +1,14 @@
 template <class T>
 void mergesort(T a[], size_t l, size_t h) {
+  if (h - l == 2) {
+    if (a[l] > a[h]) {
+      T t = a[l];
+      a[l] = a[h];
+      a[h] = t;
+    }
+    return;
+  }
+  if (h - l == 1) return;
   if (h > l) {
     size_t size = h - l + 1;
     size_t m = l + (h - l) / 2;
