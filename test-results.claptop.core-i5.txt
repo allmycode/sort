@@ -1,0 +1,17 @@
+Start tests quick ...
+Test 0 on 100000 took 0.03 seconds
+Test 0 on 1000000 took 0.34 seconds
+Test 0 on 10000000 took 4.22 seconds
+Test 0 on 100000000 took 44.97 seconds
+Finished tests ...
+Start tests merge ...
+Test 0 on 100000 took 0.03 seconds
+Test 0 on 1000000 took 0.41 seconds
+Test 0 on 10000000 took 4.68 seconds
+Test 0 on 100000000 took 53.37 seconds
+Finished tests ...
+Start tests heap ...
+Test 0 on 100000 took 0.04 seconds
+Test 0 on 1000000 took 0.64 seconds
+Test 0 on 10000000 took 9.71 seconds
+Test 0 on 100000000 took 156.6 seconds
