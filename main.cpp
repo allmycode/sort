@@ -1,10 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "mergesort.hpp"
-#include "bubblesort.hpp"
+#include "sort.h"
 
-const int SIZE = 1000;
+const size_t SIZE = 10;
 
 int* makeTestArray();
 
@@ -24,9 +23,9 @@ int main(int argc, char* argv[]) {
   init();
 
   int* data = makeTestArray();
-  //  printArray("unsorted", data, SIZE);
+  printArray("un", data, SIZE);
   sort(data, SIZE);
-  // printArray("sorted", data, SIZE);
+  printArray("so", data, SIZE);
   if (checkSort(data, SIZE))
     std::cout << "OK" << std::endl;
   else
@@ -60,8 +59,7 @@ void printArray(const char* name, int a[], int size) {
 }
 
 void sort(int a[], int size) {
-  //bubblesort(a, size);
-  mergesort(a, size);
+  heapsort(a, size);
 }
 
 bool checkSort(int a[], int size) {
