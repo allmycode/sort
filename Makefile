@@ -4,3 +4,5 @@ main:	main.cpp *.hpp
 test:	test-executor.cpp *.hpp
 	g++ -o test test-executor.cpp
 
+measure: measure.cpp *.hpp
+	g++ -O3 -o measure measure.cpp
