@@ -12,7 +12,7 @@ void quicksort(T a[], size_t l, size_t h) {
   if (h > l) {
     // partition
     int p = rand() % (h - l) + l;
-    int d = a[p];
+    T d = a[p];
     // divide
     swap(a[l], a[p]);
     int i = l;
