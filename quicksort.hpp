@@ -15,8 +15,8 @@ void quicksort(T a[], size_t l, size_t h) {
     T d = a[p];
     // divide
     swap(a[l], a[p]);
-    int i = l;
-    int j = i + 1;
+    size_t i = l;
+    size_t j = i + 1;
     while (j < h) {
       while (a[j] > d && j < h) j++;
       if (j < h) {
