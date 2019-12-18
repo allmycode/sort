@@ -53,7 +53,7 @@ void doTests(std::string sortname) {
 
 void cleanUp() {
   for (int i = MIN_POWER; i <= MAX_POWER; i++) {
-    for (int j = 0; j < TRIES; j++) {
+    for (int j = 0; j <= TRIES; j++) {
       delete[] dt[i][j];
     }
   }
@@ -71,6 +71,7 @@ int main(int argc, const char* argv[]) {
   doTests(sortname);
   
   cleanUp();
+  delay(100);
 
   return 0;
 }
